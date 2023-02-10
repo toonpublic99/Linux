@@ -1,0 +1,63 @@
+>> WordPress with Nginx Installation on Ubuntu
+
+1. sudo -i
+
+2. sudo apt update && apt upgrade -y
+
+3. sudo apt install apache2 -y
+
+4. sudo systemctl status apache2
+
+5. sudo apt install mariadb-server -y
+
+6. sudo mysql_secure_installation
+
+7. sudo apt install php php-mysql -y
+
+8. sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+
+9. sudo mysql -u root -p
+
+10. CREATE DATABASE wordpress_db;
+
+11. CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password';
+
+12. GRANT ALL ON wordpress_db.* TO 'wp_user'@'localhost' IDENTIFIED BY 'password';
+
+13. FLUSH PRIVILEGES;
+
+14. EXIT;
+
+15. cd /tmp 
+
+16. sudo wget https://wordpress.org/latest.tar.gz
+
+17. sudo tar -xvf latest.tar.gz
+
+18. sudo cp -R wordpress /var/www/html
+
+19. sudo chown -R www-data:www-data /var/www/html/wordpress/
+
+20. sudo chmod -R 755 /var/www/html/wordpress/
+
+21. sudo mkdir /var/www/html/wordpress/wp-content/uploads
+
+22. sudo chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads/
+
+23. cd /etc/apache2/sites-available
+
+24. sudo nano 000-default.conf
+
+หาส่วนนี้ให้เจอ
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html
+
+จากนั้นแก้ไข DocumentRoot /var/www/html เป็น DocumentRoot /var/www/html/wordpress
+
+
+25. sudo systemctl reload apache2
+
+26. sudo systemctl status apache2
+
+27. เปิด Web Browser จากนั้นให้ใส่หมายเลข Public IP Address ลงไป
+
